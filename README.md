@@ -127,7 +127,6 @@ Các bounding box có confidence cao được chọn làm box tham chiếu (anch
 
 Những box gần vị trí anchor và có kích thước tương đồng sẽ được tăng confidence.
 
-```text
 C' = min(Ci + αCa, 1)
 Trong đó:
 
