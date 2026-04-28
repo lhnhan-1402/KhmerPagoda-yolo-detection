@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 5
+names: ['hoa', 'la', 'lua', 'ran', 'than']
+
+roboflow:
+  workspace: kmj-myund
+  project: chuakhmer
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/kmj-myund/chuakhmer/dataset/3
