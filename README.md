@@ -166,7 +166,7 @@ pip install -r requirements.txt
 
 ## Huấn luyện mô hình
 
-yolo detect train data=data.yaml model=yolo26m.pt epochs=250 imgsz=768 batch=8
+python main.py
 
 ## Detect ảnh
 python detect_caitien.py
