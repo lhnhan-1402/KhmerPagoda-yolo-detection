@@ -127,22 +127,22 @@ Các bounding box có confidence cao được chọn làm box tham chiếu (anch
 
 Những box gần vị trí anchor và có kích thước tương đồng sẽ được tăng confidence.
 
-C' = min(Ci + αCa, 1)
-Trong đó:
+`C' = min(Ci + αCa, 1)`
 
-Ci: độ tin cậy ban đầu của bounding box
-Ca: độ tin cậy của anchor box
-α: hệ số tăng cường
+Trong đó:
+`Ci`: độ tin cậy ban đầu của bounding box
+`Ca`: độ tin cậy của anchor box
+`α`: hệ số tăng cường
 
 Phương pháp này giúp các đối tượng nhỏ hoặc khó nhận dạng có thêm cơ hội được giữ lại.
 
-2. Ngưỡng confidence riêng cho từng lớp
+### 2. Ngưỡng confidence riêng cho từng lớp
 
 Mỗi lớp đối tượng có kích thước và đặc điểm khác nhau nên sử dụng ngưỡng confidence riêng:
 
 la → ngưỡng thấp hơn để giữ chi tiết nhỏ
 Các lớp khác → ngưỡng chuẩn
-3. Non-Maximum Suppression theo từng lớp
+### 3. Non-Maximum Suppression theo từng lớp
 
 Ngưỡng IoU:
 
@@ -150,5 +150,41 @@ la → 0.8
 Lớp khác → 0.6
 
 Giúp giảm box chồng lấp nhưng vẫn giữ được nhiều hoa văn nhỏ.
+### Hiệu quả đạt được
 
+- Giảm số lượng bounding box dư thừa
+- Giảm box trùng lặp
+- Tăng khả năng phát hiện đối tượng nhỏ
+- Giảm bỏ sót hoa văn
+- Kết quả trực quan rõ ràng hơn
+- Tăng độ tin cậy dự đoán
 
+---
+## Cài đặt môi trường
+
+pip install -r requirements.txt
+
+## Huấn luyện mô hình
+
+yolo detect train data=data.yaml model=yolo26m.pt epochs=250 imgsz=768 batch=8
+
+## Detect ảnh
+python detect_caitien.py
+
+## Kết quả minh họa
+### YOLO gốc
+Có thể xuất hiện nhiều box chồng lấp
+Một số chi tiết nhỏ confidence thấp
+### YOLO + Boost + NMS
+Giảm nhiễu
+Bounding box rõ ràng hơn
+Kết quả chính xác hơn
+
+- Có thể thêm hình ảnh minh họa trong thư mục results/
+## Ứng dụng thực tế
+- Hỗ trợ bảo tồn văn hóa Khmer Nam Bộ
+- Nghiên cứu kiến trúc truyền thống
+- Hệ thống tra cứu hình ảnh
+- Ứng dụng du lịch thông minh
+- Ứng dụng nhận dạng bằng camera
+- Giáo dục văn hóa dân tộc
